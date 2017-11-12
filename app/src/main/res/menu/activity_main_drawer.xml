@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_nav_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_courses"
+            android:icon="@drawable/ic_nav_courses"
+            android:title="Courses/Programs" />
+        <item
+            android:id="@+id/nav_grades"
+            android:icon="@drawable/ic_nav_grades"
+            android:title="My Grades" />
+        <item
+            android:id="@+id/nav_tuition"
+            android:icon="@drawable/ic_nav_tuition"
+            android:title="Tuition Fee Advising" />
+        <item
+            android:id="@+id/nav_uniform"
+            android:icon="@drawable/ic_nav_uniform"
+            android:title="Proper Uniform" />
+    </group>
+
+    <group android:id="@+id/second_group"
+        android:checkableBehavior="none">
+        <item android:id="@+id/nav_signout"
+            android:title="Sign-out"
+            android:icon="@drawable/ic_nav_signout"/>
+
+    </group>
+
+</menu>

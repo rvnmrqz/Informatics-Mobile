@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1F7EC2</color>
+    <color name="colorPrimaryDark">#1377BF</color>
+    <color name="colorAccent">#303F9F</color>
+    <color name="fontColor">#0D85D5</color>
+
+    <!--CARD-->
+    <color name="transparent">#00000000</color>
+    <!-- card colors -->
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow_1">#d4d4d4</color>
+    <color name="card_shadow_2">#dddddd</color>
+    <color name="card_detailing">#eee</color>
+</resources>

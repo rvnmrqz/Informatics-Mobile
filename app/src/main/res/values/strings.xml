@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Informatics</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="welcometext1">Informatics has everything you need for a world-class education. From better equipment and facilities to a more conducive environment, Informatics gives you the edge.</string>
+
+    <string name="abiutUstext1">The Informatics Group, listed on the mainboard of the Stock Exchange of Singapore was established in 1983, and is a multinational corporation providing lifelong learning services in information technology and business management.</string>
+    <string name="abiutUstext2">Informatics presently has a global network spanning more than 50 countries, offering programs from O/A Levels (for international students) to undergraduate and post-graduate degree completions.</string>
+    <string name="visionandmissiontext">We are the preferred and leading educational institution offering IT-empowered courses that produces globally competitive individuals who can be innovators of the world.</string>
+
+
+</resources>
