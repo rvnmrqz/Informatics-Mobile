@@ -1,23 +1,17 @@
 package solomonkey.informatics;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -77,7 +71,7 @@ public class Fragment_Home extends Fragment{
             @Override
             public void onClick(View view) {
                 MainActivity.navigationView.setCheckedItem(R.id.nav_courses);
-                MainActivity.changeBackstack(false,new Fragment_Courses(),"Courses");
+                MainActivity.changeBackstack(false,new Fragment_CoursesCategory(),"Courses");
             }
         });
 
@@ -91,7 +85,10 @@ public class Fragment_Home extends Fragment{
     }
 
     protected void prepareCarousel(){
+        //dito ka nlng magchange or mag-add ng images from net/resources
         images = new int[]{R.drawable.carousel_a, R.drawable.carousel_bbb, R.drawable.carousel_c};
+
+        //mahalaga na last tong dalawa saka ung pagkakasunod nitong dalawa kasi mag-eerror kapag nauna ung setpagecount
         carouselView.setImageListener(imageListener);
         carouselView.setPageCount(images.length);
 

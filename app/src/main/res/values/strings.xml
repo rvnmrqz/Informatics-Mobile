@@ -13,5 +13,8 @@
     <string name="abiutUstext2">Informatics presently has a global network spanning more than 50 countries, offering programs from O/A Levels (for international students) to undergraduate and post-graduate degree completions.</string>
     <string name="visionandmissiontext">We are the preferred and leading educational institution offering IT-empowered courses that produces globally competitive individuals who can be innovators of the world.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

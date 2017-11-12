@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rowtemplate_card">
+    <TextView
+        android:id="@+id/row_text"
+        android:lines="2"
+        android:textColor="#fff"
+        android:text="Sample"
+        android:textSize="17sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"/>
+</LinearLayout>

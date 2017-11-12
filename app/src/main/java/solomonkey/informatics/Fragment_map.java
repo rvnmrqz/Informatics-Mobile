@@ -13,7 +13,6 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -37,7 +36,6 @@ public class Fragment_map extends Fragment implements OnMapReadyCallback{
         super.onAttach(context);
         this.context = context;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -85,8 +83,6 @@ public class Fragment_map extends Fragment implements OnMapReadyCallback{
         for (int x = 0; x<latlng_List.size();x++){
             addmarker(latlng_List.get(x),address_List.get(x));
         }
-
-
     }
     protected void addmarker(LatLng coor, String title){
         mGooglemap.addMarker(new MarkerOptions().position(coor).title("Informatics College, Inc.").snippet(title));
