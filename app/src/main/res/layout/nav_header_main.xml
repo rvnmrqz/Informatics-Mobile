@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/logo" />
-
     <TextView
         android:id="@+id/nav_studentName"
         android:visibility="gone"
@@ -27,13 +26,4 @@
         android:text="Juan Dela Cruz"
         android:textColor="#000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:id="@+id/nav_studentEmail"
-        android:visibility="gone"
-        android:textColor="#000"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="juandelacruz@gmail.com" />
-
 </LinearLayout>

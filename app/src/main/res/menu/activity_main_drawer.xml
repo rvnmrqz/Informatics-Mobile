@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/nav_group1"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_nav_home"
@@ -11,10 +13,6 @@
             android:icon="@drawable/ic_nav_courses"
             android:title="Courses/Programs" />
         <item
-            android:id="@+id/nav_grades"
-            android:icon="@drawable/ic_nav_grades"
-            android:title="My Grades" />
-        <item
             android:id="@+id/nav_tuition"
             android:icon="@drawable/ic_nav_tuition"
             android:title="Tuition Fee Advising" />
@@ -23,13 +21,39 @@
             android:icon="@drawable/ic_nav_uniform"
             android:title="Proper Uniform" />
     </group>
+    <group
+        android:visible="false"
+        android:id="@+id/nav_group2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/ic_nav_notifications"
+            android:title="Notifications" />
+        <item
+            android:id="@+id/nav_grades"
+            android:icon="@drawable/ic_nav_grades"
+            android:title="My Grades" />
+        <item
+            android:id="@+id/nav_schedule"
+            android:icon="@drawable/ic_nav_schedule"
+            android:title="My Schedule" />
+        <item
+            android:id="@+id/nav_requirements"
+            android:icon="@drawable/ic_nav_requirements"
+            android:title="My Requirements" />
 
-    <group android:id="@+id/second_group"
+    </group>
+
+    <group  android:id="@+id/nav_group3"
         android:checkableBehavior="none">
+        <item android:id="@+id/nav_signin"
+            android:visible="false"
+            android:title="Sign-in"
+            android:icon="@drawable/ic_nav_signin"/>
         <item android:id="@+id/nav_signout"
+            android:visible="false"
             android:title="Sign-out"
             android:icon="@drawable/ic_nav_signout"/>
-
     </group>
 
 </menu>

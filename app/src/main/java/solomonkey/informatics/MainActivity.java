@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     static FragmentTransaction fragmentTransaction;
     public static Menu nav_menu;
 
-    static TextView nav_name,nav_email;
+    static TextView nav_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         staticActionbar = getSupportActionBar();
         fragmentManager = getSupportFragmentManager();
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity
 
         View header = navigationView.getHeaderView(0);
         nav_name =  header.findViewById(R.id.nav_studentName);
-        nav_email =  header.findViewById(R.id.nav_studentEmail);
 
         //to display first the home fragment
         navigationView.setCheckedItem(R.id.nav_home);
@@ -98,37 +95,57 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        switch (id){
+            case R.id.nav_home:
+                clearBackstack();
+                changeBackstack(false, new Fragment_Home(), "Home");
+                break;
+            case R.id.nav_courses:
+                clearBackstack();
+                changeBackstack(false, new Fragment_CoursesCategory(), "Courses");
+                break;
+            case R.id.nav_tuition:
+                clearBackstack();
+                changeBackstack(false,new Fragment_Tuition(),"Tuition");
+                break;
+            case R.id.nav_uniform:
+                clearBackstack();
+                TemporaryHolder.uniformMode = true;
+                changeBackstack(false,new Fragment_CoursesCategory(),"Fragment_CoursesCategory");
+                break;
 
-        if (id == R.id.nav_home) {
-            clearBackstack();
-            changeBackstack(false, new Fragment_Home(), "Home");
+            //ITEMS FOR LOGGED STUDENT
+            case R.id.nav_notifications:
+                clearBackstack();
+                changeBackstack(false,new Fragment_Notifications(),"Fragment_Notifications");
+                break;
+            case R.id.nav_grades:
+                clearBackstack();
+                changeBackstack(false, new Fragment_Grades(), "Fragment_Grades");
+                break;
+            case R.id.nav_schedule:
+                clearBackstack();
+                changeBackstack(false, new Fragment_Schedule(), "Fragment_Schedule");
+                break;
+            case R.id.nav_requirements:
+                clearBackstack();
+                changeBackstack(false,new Fragment_Requirements(),"Fragment_Requirements");
+                break;
+
+            //SIGN IN/OUT
+            case R.id.nav_signin:
+                clearBackstack();
+                changeBackstack(false,new Fragment_Login(),"SignIn");
+                break;
+            case R.id.nav_signout:
+                logout();
+                break;
+
         }
-        else if (id == R.id.nav_courses) {
-            clearBackstack();
-            changeBackstack(false, new Fragment_CoursesCategory(), "Courses");
-        }
-        else if (id == R.id.nav_grades) {
-            clearBackstack();
-            //check muna kung may nakaSign-in na account kung wala show login
-            //nasa temporary variable lang muna sa ngayon, sharedpref mo na lang or sqlite kapag actual coding na
-            if(TemporaryHolder.tempSomeonelogged){
-                changeBackstack(false, new Fragment_Grades(), "Grades");
-            }else{
-                MainActivity.changeBackstack(false,new Fragment_Login(),"Login");
-            }
-        }
-        else if (id == R.id.nav_tuition) {
-            clearBackstack();
-            changeBackstack(false,new Fragment_Tuition(),"Tuition");
-        }
-        else if (id == R.id.nav_uniform) {
-            clearBackstack();
-            TemporaryHolder.uniformMode = true;
-            changeBackstack(false,new Fragment_CoursesCategory(),"Fragment_CoursesCategory");
-        }
-        else if (id == R.id.nav_signout) {
-            logout();
-        }
+
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -180,6 +197,7 @@ public class MainActivity extends AppCompatActivity
                 })
                 .show();
     }
+
     protected void logout(){
         //Clear saved user data, refresh sliding navigation header info: picture, name, email
         //Hide sign-out menu item from sliding navigation
@@ -212,21 +230,24 @@ public class MainActivity extends AppCompatActivity
         nav_menu = navigationView.getMenu();
 
         if(logged){
+            //SOMEONE IS LOGGED
             //show the user's name (and email) in the navigation
-            //show sigg-out item in the navigation
+            //show navigation items for logged student
+            nav_menu.setGroupVisible(R.id.nav_group2,true);
+            nav_menu.findItem(R.id.nav_signin).setVisible(false);
             nav_menu.findItem(R.id.nav_signout).setVisible(true);
 
             //get data from sharedpref/sqlite
             //nav_name.setText("value");
-           // nav_email.setText("value");
-
             nav_name.setVisibility(View.VISIBLE);
-            nav_email.setVisibility(View.VISIBLE);
+
         }else{
-            //hide all shown items for logged user
+            //HIDE all shown items for logged student
+            nav_menu.setGroupVisible(R.id.nav_group2,false);
+            nav_menu.findItem(R.id.nav_signin).setVisible(true);
             nav_menu.findItem(R.id.nav_signout).setVisible(false);
             nav_name.setVisibility(View.GONE);
-            nav_email.setVisibility(View.GONE);
+
         }
     }
 }

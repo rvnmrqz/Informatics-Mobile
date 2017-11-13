@@ -20,13 +20,8 @@ import android.widget.Toast;
  */
 public class Fragment_Login extends Fragment {
 
-
-    Context context;
     Button btnSignin;
-
-    public Fragment_Login() {
-        // Required empty public constructor
-    }
+    Context context;
 
     @Override
     public void onAttach(Context context) {
@@ -38,17 +33,13 @@ public class Fragment_Login extends Fragment {
     public void onResume() {
         super.onResume();
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Sign-in");
-        new AlertDialog.Builder(context)
-                .setMessage("Sign-in first to view your grades")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                })
-                .show();
-
     }
+
+    public Fragment_Login() {
+        // Required empty public constructor
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,10 +59,9 @@ public class Fragment_Login extends Fragment {
 
                 TemporaryHolder.tempSomeonelogged=true;
 
-
-                MainActivity.changeBackstack(false,new Fragment_Grades(),"Grades");
+                //to update navigation
                 MainActivity.someoneislogged(true);
-
+                MainActivity.changeBackstack(false,new Fragment_Home(),"Home");
                 Toast.makeText(context, "Welcome!!!", Toast.LENGTH_SHORT).show();
             }
         });
