@@ -22,7 +22,7 @@ public class Fragment_Home extends Fragment{
     CarouselView carouselView;
     Context context;
     ImageListener imageListener;
-    TextView txtcourse_learnMore;
+    TextView txtcourse_learnMore,txtViewLargeMap;
 
     @Override
     public void onAttach(Context context) {
@@ -33,6 +33,7 @@ public class Fragment_Home extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home");
         MainActivity.homeIsShown=true;
     }
@@ -72,6 +73,15 @@ public class Fragment_Home extends Fragment{
             public void onClick(View view) {
                 MainActivity.navigationView.setCheckedItem(R.id.nav_courses);
                 MainActivity.changeBackstack(false,new Fragment_CoursesCategory(),"Courses");
+            }
+        });
+
+        txtViewLargeMap = getActivity().findViewById(R.id.txtViewLargeMap);
+        txtViewLargeMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.homeIsShown=false;
+                MainActivity.changeBackstack(true,new Fragment_map(),"Map");
             }
         });
 

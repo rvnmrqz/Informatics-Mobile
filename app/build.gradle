@@ -32,5 +32,6 @@ dependencies {
     compile 'com.synnapps:carouselview:0.1.4'
     compile 'com.google.android.gms:play-services-maps:9.6.0'
     compile 'com.google.android.gms:play-services-plus:9.6.0'
+    compile 'com.github.scottyab:showhidepasswordedittext:0.8'
     testCompile 'junit:junit:4.12'
 }

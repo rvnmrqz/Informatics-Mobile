@@ -1,11 +1,13 @@
 package solomonkey.informatics;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +22,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    static Context staticContext;
+    static ActionBar staticActionbar;
+
     public static boolean homeIsShown;
     public static NavigationView navigationView;
     static FragmentManager fragmentManager;
@@ -32,6 +37,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        staticContext = MainActivity.this;
+        staticActionbar = getSupportActionBar();
 
         fragmentManager = getSupportFragmentManager();
 
@@ -47,6 +55,14 @@ public class MainActivity extends AppCompatActivity
         //to display first the home fragment
         navigationView.setCheckedItem(R.id.nav_home);
         changeBackstack(false,new Fragment_Home(),"Home");
+
+        //check muna kung merong nakalogin na account
+        nav_menu = navigationView.getMenu();
+        if(TemporaryHolder.tempSomeonelogged){
+            nav_menu.findItem(R.id.nav_signout).setVisible(true);
+        }else{
+            nav_menu.findItem(R.id.nav_signout).setVisible(false);
+        }
     }
 
     @Override
@@ -71,8 +87,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -80,29 +94,41 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+            clearBackstack();
             changeBackstack(false, new Fragment_Home(), "Home");
         }
         else if (id == R.id.nav_courses) {
+            clearBackstack();
             changeBackstack(false, new Fragment_CoursesCategory(), "Courses");
         }
         else if (id == R.id.nav_grades) {
-            changeBackstack(false, new Fragment_Grades(), "Grades");
+            clearBackstack();
+
+            //check muna kung may nakaSign-in na account kung wala show login
+            //nasa temporary variable lang muna sa ngayon, sharedpref mo na lang or sqlite kapag actual coding na
+            if(TemporaryHolder.tempSomeonelogged){
+                changeBackstack(false, new Fragment_Grades(), "Grades");
+            }else{
+                MainActivity.changeBackstack(false,new Fragment_Login(),"Login");
+            }
         }
         else if (id == R.id.nav_tuition) {
+            clearBackstack();
             changeBackstack(false,new Fragment_Tuition(),"Tuition");
         }
         else if (id == R.id.nav_uniform) {
+            clearBackstack();
             changeBackstack(false,new Fragment_Uniform(),"Uniforms");
         }
         else if (id == R.id.nav_signout) {
             logout();
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    //BACKSTACK
     public static void changeBackstack(boolean addToBackStack, Fragment fragment, String name){
         try{
             fragmentTransaction = fragmentManager.beginTransaction();
@@ -120,6 +146,11 @@ public class MainActivity extends AppCompatActivity
             Log.wtf("changeBackstack","Backstack count: "+fragmentManager.getBackStackEntryCount());
         }catch (Exception ee){
             Log.wtf("addToBackStack","ERROR: "+ee.getMessage());
+        }
+    }
+    protected static void clearBackstack(){
+        for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
+            fragmentManager.popBackStack();
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,7 @@ public class Fragment_map extends Fragment implements OnMapReadyCallback{
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        MapsInitializer.initialize(getContext());
+        MapsInitializer.initialize(context);
         mGooglemap = googleMap;
         mGooglemap.getUiSettings().setMapToolbarEnabled(false);
         mGooglemap.animateCamera(CameraUpdateFactory.newLatLngZoom(manilaView,10f));
@@ -88,4 +89,11 @@ public class Fragment_map extends Fragment implements OnMapReadyCallback{
         mGooglemap.addMarker(new MarkerOptions().position(coor).title("Informatics College, Inc.").snippet(title));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!MainActivity.homeIsShown){
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Locations");
+        }
+    }
 }

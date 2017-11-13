@@ -6,4 +6,7 @@ package solomonkey.informatics;
 
 public class TemporaryHolder {
     public static String primarykeyholder = "";
+
+    //temporary lang to, palitan nlng ng sharedpref kapag actual coding na
+    public static boolean tempSomeonelogged=false;
 }
