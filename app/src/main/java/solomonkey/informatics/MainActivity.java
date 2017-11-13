@@ -17,19 +17,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static Context staticContext;
     static ActionBar staticActionbar;
 
     public static boolean homeIsShown;
     public static NavigationView navigationView;
     static FragmentManager fragmentManager;
     static FragmentTransaction fragmentTransaction;
-    Menu nav_menu;
+    public static Menu nav_menu;
+
+    static TextView nav_name,nav_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +41,9 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        staticContext = MainActivity.this;
-        staticActionbar = getSupportActionBar();
 
+
+        staticActionbar = getSupportActionBar();
         fragmentManager = getSupportFragmentManager();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -52,16 +55,19 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View header = navigationView.getHeaderView(0);
+        nav_name =  header.findViewById(R.id.nav_studentName);
+        nav_email =  header.findViewById(R.id.nav_studentEmail);
+
         //to display first the home fragment
         navigationView.setCheckedItem(R.id.nav_home);
         changeBackstack(false,new Fragment_Home(),"Home");
 
-        //check muna kung merong nakalogin na account
-        nav_menu = navigationView.getMenu();
+        //check muna kung merong nakalogin na account, pwede to sa sharedpref nalang kunin ung value
         if(TemporaryHolder.tempSomeonelogged){
-            nav_menu.findItem(R.id.nav_signout).setVisible(true);
+            someoneislogged(true);
         }else{
-            nav_menu.findItem(R.id.nav_signout).setVisible(false);
+            someoneislogged(false);
         }
     }
 
@@ -103,7 +109,6 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_grades) {
             clearBackstack();
-
             //check muna kung may nakaSign-in na account kung wala show login
             //nasa temporary variable lang muna sa ngayon, sharedpref mo na lang or sqlite kapag actual coding na
             if(TemporaryHolder.tempSomeonelogged){
@@ -118,7 +123,8 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_uniform) {
             clearBackstack();
-            changeBackstack(false,new Fragment_Uniform(),"Uniforms");
+            TemporaryHolder.uniformMode = true;
+            changeBackstack(false,new Fragment_CoursesCategory(),"Fragment_CoursesCategory");
         }
         else if (id == R.id.nav_signout) {
             logout();
@@ -149,10 +155,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
     protected static void clearBackstack(){
+        TemporaryHolder.uniformMode = false;
         for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
             fragmentManager.popBackStack();
         }
     }
+
 
     protected void confirmExit(){
         Log.wtf("confirmExit","Method is called");
@@ -183,10 +191,10 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do clearing of user data here
 
-                        //hiding sign-out menu item
-                        nav_menu = navigationView.getMenu();
-                        nav_menu.findItem(R.id.nav_signout).setVisible(false);
+                        someoneislogged(false);
 
+                        navigationView.setCheckedItem(R.id.nav_home);
+                        changeBackstack(false,new Fragment_Home(),"Home");
                         Toast.makeText(MainActivity.this, "Signed-out", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -197,5 +205,28 @@ public class MainActivity extends AppCompatActivity
                     }
                 })
                 .show();
+    }
+
+    public static void someoneislogged(boolean logged){
+
+        nav_menu = navigationView.getMenu();
+
+        if(logged){
+            //show the user's name (and email) in the navigation
+            //show sigg-out item in the navigation
+            nav_menu.findItem(R.id.nav_signout).setVisible(true);
+
+            //get data from sharedpref/sqlite
+            //nav_name.setText("value");
+           // nav_email.setText("value");
+
+            nav_name.setVisibility(View.VISIBLE);
+            nav_email.setVisibility(View.VISIBLE);
+        }else{
+            //hide all shown items for logged user
+            nav_menu.findItem(R.id.nav_signout).setVisible(false);
+            nav_name.setVisibility(View.GONE);
+            nav_email.setVisibility(View.GONE);
+        }
     }
 }

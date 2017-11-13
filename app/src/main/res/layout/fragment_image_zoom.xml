@@ -1,0 +1,27 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="solomonkey.informatics.Fragment_ImageZoom">
+
+    <!-- TODO: Update blank fragment layout -->
+   <solomonkey.informatics.TouchImageView
+       android:id="@+id/touchimageview"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/zoom_txtClose"
+        android:layout_gravity="top|right"
+        android:text="X"
+        android:textColor="#3e3e3f"
+        android:shadowColor="#fff"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>

@@ -52,7 +52,8 @@ public class Fragment_CoursesCategory extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Courses/Programs");
+        if(TemporaryHolder.uniformMode) ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Proper Uniform");
+        else  ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Courses/Programs");
     }
 
     public Fragment_CoursesCategory() {
@@ -121,7 +122,6 @@ public class Fragment_CoursesCategory extends Fragment {
             Log.wtf("list","category list is 0");
             showMessageLayout(true,false,true,"No results",true,"Refresh");
         }
-
     }
 
     //Screen Transitions

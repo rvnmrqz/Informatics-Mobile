@@ -1,13 +1,85 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E9EBEE"
     tools:context="solomonkey.informatics.Fragment_Uniform">
 
-    <TextView
-        android:textAlignment="center"
-        android:layout_gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="[Uniform Fragment]" />
-</FrameLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--COURSE /PROGRAM NAME-->
+            <TextView
+                android:layout_marginTop="8dp"
+                android:text="Bachelor Of Science in Information Technology"
+                android:background="@drawable/card"
+                android:textStyle="bold"
+                android:paddingBottom="14dp"
+                android:textColor="@color/fontColor"
+                android:textSize="26sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!--MALE-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Male"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/imgview_male_uniform"
+                        android:src="@drawable/maico"
+                        android:scaleType="centerCrop"
+                        android:layout_margin="8dp"
+                        android:background="#686868"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp" />
+                    <TextView
+                        android:text="[Optional Description]"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--FEMALE-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Female"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/imgview_female_uniform"
+                        android:layout_margin="8dp"
+                        android:background="#686868"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp" />
+                    <TextView
+                        android:text="[Optional Description]"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+</ScrollView>

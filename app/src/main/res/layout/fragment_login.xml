@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,27 +6,46 @@
     android:orientation="vertical"
     tools:context="solomonkey.informatics.Fragment_Login">
 
-    <EditText
-        android:hint="Username"
-        android:layout_margin="16dp"
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
-        android:fontFamily="sans-serif"
-        app:tint_color="@color/colorPrimary"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_margin="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:text="Sign-in"
-        android:textColor="#fff"
-        android:background="@color/colorPrimary"
-        android:layout_gravity="center"
-        android:layout_width="150dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:hint="Username"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+            android:fontFamily="sans-serif"
+            app:tint_color="@color/colorPrimary"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btnSignIn"
+            android:text="Sign-in"
+            android:textColor="#fff"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Forgot Password?"
+        android:padding="16dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 
 
-</LinearLayout>
+</RelativeLayout>

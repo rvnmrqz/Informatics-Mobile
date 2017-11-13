@@ -43,7 +43,8 @@ public class Fragment_CoursesSubCategory extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Courses/Programs");
+        if(TemporaryHolder.uniformMode) ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Proper Uniform");
+        else  ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Courses/Programs");
     }
 
     public Fragment_CoursesSubCategory() {
@@ -141,6 +142,8 @@ public class Fragment_CoursesSubCategory extends Fragment {
     }
 
     //custom adapter for listview
+    //basahin mo ung code ko dun sa ONCLICK NG ROW
+
     class CustomAdapter extends ArrayAdapter {
         ArrayList<String> categories= new ArrayList<>();
         ArrayList<String> primarykeys= new ArrayList<>();
@@ -165,10 +168,16 @@ public class Fragment_CoursesSubCategory extends Fragment {
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //open the description fragment of the program/course
                     //pasa muna sa temporary holder ung primary key
                     TemporaryHolder.primarykeyholder = primarykeys.get(position);
-                    MainActivity.changeBackstack(true,new Fragment_CourseDescription(),"Sub_Category");
+
+                    if(TemporaryHolder.uniformMode){
+                        //open uniform fragment based sa primary key
+                        MainActivity.changeBackstack(true,new Fragment_Uniform(),"Fragment_Uniform");
+                    }else{
+                        //open the description fragment of the program/course
+                        MainActivity.changeBackstack(true,new Fragment_CourseDescription(),"Fragment_CourseDescription");
+                    }
                 }
             });
 
