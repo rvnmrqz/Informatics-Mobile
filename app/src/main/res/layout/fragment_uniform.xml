@@ -38,7 +38,7 @@
                         android:layout_height="wrap_content" />
                     <ImageView
                         android:id="@+id/imgview_male_uniform"
-                        android:src="@drawable/maico"
+                        android:src="@drawable/boys"
                         android:scaleType="centerCrop"
                         android:layout_margin="8dp"
                         android:background="#686868"
@@ -67,8 +67,8 @@
                         android:layout_height="wrap_content" />
                     <ImageView
                         android:id="@+id/imgview_female_uniform"
+                        android:src="@drawable/girls"
                         android:layout_margin="8dp"
-                        android:background="#686868"
                         android:layout_width="match_parent"
                         android:layout_height="300dp" />
                     <TextView
